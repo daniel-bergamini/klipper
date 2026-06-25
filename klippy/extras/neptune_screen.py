@@ -1013,6 +1013,8 @@ class StopPrintProcessor(CommandProcessor):
             screen.run_delayed_gcode("CANCEL_PRINT", lambda: (
                 screen.send_text("page main")
             ))
+        if message.command_data[0] == 0xF0: #no/cancel - return to printing
+            screen.send_text("page printpause")
 
 class HardwareTestProcessor(CommandProcessor):
     def process(self, message, screen):
